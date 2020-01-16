@@ -29,6 +29,11 @@ module OmniAuth
         }
       end
 
+      def callback_url
+        # Fixes regression in omniauth-oauth2 v1.4.0 by https://github.com/intridea/omniauth-oauth2/commit/85fdbe117c2a4400d001a6368cc359d88f40abc7
+        options[:callback_url] || (full_host + script_name + callback_path)
+      end
+
       # Require: Access token with PROFILE permission issued.
       def raw_info
         @raw_info ||= JSON.load(access_token.get('v2/profile').body)

@@ -1,0 +1,6 @@
+# bundler state
+/.bundle
+/vendor/bundle/
+
+# various artifacts
+/coverage/
